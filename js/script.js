@@ -16,9 +16,7 @@ fmEmpl.addEventListener('submit', (e) => {
     let valEmplExt  = obj("extension").value;
     let valEmplEmail= obj("email").value;
     let valEmplDep  = obj("department").value;
-
     
-
     // INSERT A NEW ROW AT THE END OF THE EMPLOYEES TABLE
     let tr = tblEmpl.insertRow(count+1);
 
@@ -62,27 +60,23 @@ fmEmpl.addEventListener('submit', (e) => {
   
     // RESET THE FORM
     fmEmpl.reset();
+    obj("id").focus();
     // SET FOCUS BACK TO THE ID TEXT BOX
 
     // INCREMENENT THE NUMBER OF EMPLOYEES IN THE TABLE
     count+=1;
-
-    console.log(tblEmpl.childElementCount);
-  
     let empCount = document.getElementById("empCount");
     empCount.value=count;
     empCount.className="text-muted";
-
-    
-})
+    })
 
 // DELETE EMPLOYEE
 tblEmpl.addEventListener('click', (e) =>{
-    if (confirm('Are you sure you want to delete this task?')){
-        tblEmpl.deleteRow(e.target.parentElement.rowIndex);
-        count-=1;
-        empCount.value=count;
+    if(e.target.cellIndex==5){
+        if (confirm('Are you sure you want to delete this task?')){
+            tblEmpl.deleteRow(e.target.parentElement.rowIndex);
+            count-=1;
+            empCount.value=count;
+        }
     }
 })
-
-
